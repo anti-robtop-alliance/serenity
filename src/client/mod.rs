@@ -455,12 +455,7 @@ impl Client {
     pub fn new_with_cache_update_timeout<H>(token: impl AsRef<str>, handler: H, duration: Option<Duration>) -> Result<Self>
         where H: EventHandler + Send + Sync + 'static {
         let token = token.as_ref().trim();
-
-        let token = if token.starts_with("Bot ") {
-            token.to_string()
-        } else {
-            format!("Bot {}", token)
-        };
+        let token = token.to_string()
 
         let http = Http::new_with_token(&token);
 
