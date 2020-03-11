@@ -383,13 +383,7 @@ impl Client {
     pub fn new_with_extras(token: impl AsRef<str>, f: impl FnOnce(&mut Extras) -> &mut Extras) -> Result<Self>
     {
         let token = token.as_ref().trim();
-
-        let token = if token.starts_with("Bot ") {
-            token.to_string()
-        } else {
-            format!("Bot {}", token)
-        };
-
+        let token = token.to_string();
         let mut extras = Extras::default();
 
         f(&mut extras);
